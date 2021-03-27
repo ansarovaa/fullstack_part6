@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 const anecdotesAtStart = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
@@ -22,8 +23,21 @@ const initialState = anecdotesAtStart.map(asObject)
 const reducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
-
-  return state
+  switch (action.type) {
+    case 'VOTE':
+      return state.map((anecdote) =>
+        anecdote.id === action.data.id
+          ? { ...anecdote, votes: anecdote.votes + 1 }
+          : anecdote
+      );
+    default: return state;
+  }
 }
+export const voteAnecdote = (id) => ({
+  type: "VOTE",
+  data: {
+    id,
+  },
+})
 
 export default reducer
