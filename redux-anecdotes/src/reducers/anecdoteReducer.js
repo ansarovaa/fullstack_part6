@@ -37,9 +37,14 @@ export const voteAnecdote = (id) => ({type: "VOTE", data: {
         id
     }})
 
-export const creationAnecdote = (data) => ({
-    type: 'NEW_ANECDOTE',
-    data
-})
+export const creationAnecdote = anecdote => {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(anecdote)
+    dispatch({
+      type: 'NEW_ANECDOTE',
+      data: newAnecdote
+    })
+  }
+}
 
 export default reducer
