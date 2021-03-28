@@ -1,11 +1,3 @@
-/* eslint-disable default-case */
-const getId = () => (100000 * Math.random()).toFixed(0)
-
-const asObject = (anecdote) => {
-    return {content: anecdote, id: getId(), votes: 0}
-}
-
-
 const reducer = (state = [], action) => {
     console.log('state now: ', state)
     console.log('action', action)
@@ -40,13 +32,9 @@ export const voteAnecdote = (id) => ({type: "VOTE", data: {
         id
     }})
 
-export const creationAnecdote = (anecdote) => ({
+export const creationAnecdote = (data) => ({
     type: 'NEW_ANECDOTE',
-    data: {
-        content: anecdote,
-        id: getId(),
-        votes: 0
-    }
+    data
 })
 
 export default reducer
