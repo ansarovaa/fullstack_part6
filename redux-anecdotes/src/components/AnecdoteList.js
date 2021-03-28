@@ -16,8 +16,7 @@ const AnecdoteList = () => {
     const vote = (anecdote) => {
         console.log('vote', anecdote)
         dispatch(voteAnecdote(anecdote))
-        dispatch(showNotification(`Voted!`));
-        setTimeout(() => dispatch(removeNotification()), 5000);
+        dispatch(showNotification(`Voted!`, 5))
     }
 
     return (
